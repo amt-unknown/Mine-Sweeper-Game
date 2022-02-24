@@ -11,40 +11,83 @@
 </head>
 <body>
     <nav>NavBar Here</nav>
+    <main>
         <div class="gameSpace">
-            <div class="gameWindow">
-                <div class="grid-row">   
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                </div>
-                <div class="grid-row">   
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                </div>
-                <div class="grid-row">   
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                </div>
-                <div class="grid-row">   
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
-                    <div class = grid-column></div>
+            <div class="welcomeScreen screen">
+                <h1>Welcome!</h1>
+                <div class="welcomeBtns">
+                    <button class="newGame">New Game</button>
+                    <button class="tutorial">Tutorial</button> 
                 </div>
             </div>
+            <div class="tutorialScreen screen">
+                <div class="tutorialOptions"> 
+                    <div class="tutorialBack">Back</div>
+                    <div class="tutorialNewGame">New Game</div>
+                </div>
+                <div class="lessonOne">
+                    <div class = "lessonImage"> IMAGE</div>
+                    <div class = "lessonDescription">DESCRIPTION</div>
+                </div>
+                <div class="lessonTwo">
+                    <div class = "lessonImage"> IMAGE</div>
+                    <div class = "lessonDescription">DESCRIPTION</div>
+                </div>
+                <div class="lessonThree">
+                    <div class = "lessonImage"> IMAGE</div>
+                    <div class = "lessonDescription">DESCRIPTION</div>
+                </div>
+            </div>
+            <div class="gameScreen screen">
+                <div class="userScores">
+                    <div class="highScore">High Score: XXXX</div>
+                    <div class="score">Score: XXXX</div>
+                </div>
+                <div class="gridSpace">
+                    <div class="grid-row">   
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                    </div>
+                    <div class="grid-row">   
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                    </div>
+                    <div class="grid-row">   
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                    </div>
+                    <div class="grid-row">   
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                        <div class = "grid-column"></div>
+                    </div>
+                </div>
+                <div class="gameOptions">
+                    <div class="Hint">Hint</div>
+                    <div class="Leaderboard">Leaderboard</div>
+                </div>
+            </div>
+            <div class="difficultyScreen screen">
+                <h2>Difficulty</h2>
+                <div>Easy</div>
+                <div>Normal</div>
+                <div>Hard</div>
+            </div>
         </div>
+    </main>
     <sidebar>
         <h3>Leaderboard</h3>
         <ul>
-            <li><a href="#">User 1: Score</a></li>
-            <li><a href="#">User 2: Score</a></li>
-            <li><a href="#">User 3: Score</a></li>
+            <li>User 1: Score</li>
+            <li>User 2: Score</li>
+            <li>User 3: Score</li>
         </ul>
     </sidebar>
 </body>
