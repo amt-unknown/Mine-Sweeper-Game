@@ -1,0 +1,28 @@
+body{
+    text-align: center;
+    
+}
+
+.gameSpace{
+    width: 60%;
+    background-color: aqua;
+    margin: auto;
+}
+
+.grid-row{
+    display: flex;
+    justify-content: center;
+}
+
+.grid-column{
+    width: 25px;
+    height: 25px;
+    border: 1px solid black;
+    background-color: grey;
+}
+
+.grid-column:hover{
+    background-color: rgba(200, 200, 200);
+}
+
+
