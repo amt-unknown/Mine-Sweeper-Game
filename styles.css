@@ -11,6 +11,22 @@ body{
     height: 500px;
 }
 
+/* #welcomeScreen{
+    display: auto;
+}
+
+#tutorialScreen{
+   display: none;
+}
+
+#gameScreen{
+    display: none;
+}
+
+#difficultyScreen{
+    display: none;
+} */
+
 .gameSpace{
     width: 60%;
     background-color: aqua;

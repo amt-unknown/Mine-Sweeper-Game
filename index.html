@@ -6,82 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mine Sweeper</title>
 
-    <link href="styles.css" rel="stylesheet" type="text/css">
-    <script src="script.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css">
+    <script src="./script.js"></script>
 </head>
 <body>
     <nav>NavBar Here</nav>
-    <main>
-        <div class="gameSpace">
-            <div class="welcomeScreen screen">
-                <h1>Welcome!</h1>
-                <div class="welcomeBtns">
-                    <button class="newGame">New Game</button>
-                    <button class="tutorial">Tutorial</button> 
-                </div>
-            </div>
-            <div class="tutorialScreen screen">
-                <div class="tutorialOptions"> 
-                    <div class="tutorialBack">Back</div>
-                    <div class="tutorialNewGame">New Game</div>
-                </div>
-                <div class="lessonOne">
-                    <div class = "lessonImage"> IMAGE</div>
-                    <div class = "lessonDescription">DESCRIPTION</div>
-                </div>
-                <div class="lessonTwo">
-                    <div class = "lessonImage"> IMAGE</div>
-                    <div class = "lessonDescription">DESCRIPTION</div>
-                </div>
-                <div class="lessonThree">
-                    <div class = "lessonImage"> IMAGE</div>
-                    <div class = "lessonDescription">DESCRIPTION</div>
-                </div>
-            </div>
-            <div class="gameScreen screen">
-                <div class="userScores">
-                    <div class="highScore">High Score: XXXX</div>
-                    <div class="score">Score: XXXX</div>
-                </div>
-                <div class="gridSpace">
-                    <div class="grid-row">   
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                    </div>
-                    <div class="grid-row">   
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                    </div>
-                    <div class="grid-row">   
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                    </div>
-                    <div class="grid-row">   
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                        <div class = "grid-column"></div>
-                    </div>
-                </div>
-                <div class="gameOptions">
-                    <div class="Hint">Hint</div>
-                    <div class="Leaderboard">Leaderboard</div>
-                </div>
-            </div>
-            <div class="difficultyScreen screen">
-                <h2>Difficulty</h2>
-                <div>Easy</div>
-                <div>Normal</div>
-                <div>Hard</div>
+    <div id="gameSpace" class="gameSpace">
+        <div id = "welcomeScreen" class="screen">
+            <h1>Welcome!</h1>
+            <div class="welcomeBtns">
+                <button class="newGame">New Game</button>
+                <button class="tutorial">Tutorial</button> 
             </div>
         </div>
-    </main>
+        <div id="tutorialScreen" class="screen">
+            <div class="tutorialOptions"> 
+                <div class="tutorialBack">Back</div>
+                <div class="tutorialNewGame">New Game</div>
+            </div>
+            <div class="lessonOne">
+                <div class = "lessonImage"> IMAGE</div>
+                <div class = "lessonDescription">DESCRIPTION</div>
+            </div>
+            <div class="lessonTwo">
+                <div class = "lessonImage"> IMAGE</div>
+                <div class = "lessonDescription">DESCRIPTION</div>
+            </div>
+            <div class="lessonThree">
+                <div class = "lessonImage"> IMAGE</div>
+                <div class = "lessonDescription">DESCRIPTION</div>
+            </div>
+        </div>
+        <div id="gameScreen" class="screen">
+            <div class="userScores">
+                <div class="highScore">High Score: XXXX</div>
+                <div class="score">Score: XXXX</div>
+            </div>
+            <div id="gridSpace">
+            </div>
+            <div class="gameOptions">
+                <div class="Hint">Hint</div>
+                <div class="Leaderboard">Leaderboard</div>
+            </div>
+        </div>
+        <div id="difficultyScreen" class="screen">
+            <h2>Difficulty</h2>
+            <button >Easy</button>
+            <button>Normal</button>
+            <button>Hard</button>
+        </div>
+    </div>
     <sidebar>
         <h3>Leaderboard</h3>
         <ul>
