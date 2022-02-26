@@ -1,21 +1,4 @@
 //Screen Navigation Control
-// const screenChanger = {
-//     initializeGameSpace () {
-//         let gameSpaceDOM = document.getElementsByClassName('screen');
-//         let screenDisplayList = [];
-//     // let screenList = gameSpaceDOM.getElementsByClassName("screen")
-//         for(let i = 0; i < gameSpaceDOM.length; i++){
-//             // let element = document.getElementById(gameSpaceDOM[i].id);
-//             // screenDisplayList.push(element)
-//             // element.style.display = 'auto';
-//             // console.log(element.style)
-
-//             console.log(gameSpaceDOM[i].style)
-//         }
-//         console.log(screenDisplayList)
-//     },
-
-// }
 
 
 
@@ -78,9 +61,57 @@ const gameGrid = {
             }
             gameGrid.appendChild(newRow)
         }
+    },
 
-
-    }
+    //Generate Numbers Layer
+    proximityArray(){
+        for(let j = 0; j < this.rows; j++){
+            for(i = 0; i < this.columns; i++){
+                let bombsInArea = 0;
+                if((i>0 && i<this.columns-1) && (j>0 && j<this.rows-1)){ //Main Body Element
+                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i-1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('main body')
+                } else if ((i>0 && i<this.columns-1) && j==0){ //Top row
+                    bombsInArea = this.bombLayer[j][i-1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('top row')
+                } else if (i==this.columns-1 && (j>0 && j<this.rows-1)){ //Rightside Column
+                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j][i-1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('right col')
+                } else if ((i>0 && i<this.columns-1) && j==this.rows-1){ //Bottom row
+                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i-1]+this.bombLayer[j][i+1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('bottom row')
+                } else if (i==0 & (j>0 && j<this.rows-1)){ //Left Column
+                    bombsInArea = this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('left col')
+                } else if (i==this.columns-1 && j==0){ //Top-right corner
+                    bombsInArea = this.bombLayer[j][i-1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('top-right corner')
+                } else if (i==this.columns-1 & j == this.rows-1){ //Bottom-right corner
+                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j][i-1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('bottom-right corner')
+                } else if(i==0 && j==0){ //Top-left corner
+                    bombsInArea = this.bombLayer[j][i+1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
+                    this.proximityLayer[j][i] = bombsInArea;
+                    // console.log('top-left corner')
+                } else if (i==0 && j == this.rows-1) {//Bottom-left corner
+                    bombsInArea = this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i+1];
+                    this.proximityLayer[j].push(bombsInArea)
+                    // console.log('bottom-left corner')
+                } 
+                // console.log(`(${i},${j})`)
+            }
+            if(j < this.rows - 1){
+                this.proximityLayer.push([])
+            }
+        }
+    },
 }
 
 //Generate Mine Map
@@ -96,11 +127,8 @@ function bombPlacement(numberOfBombs){
     return [isBomb, numberOfBombs]
 }
 
-//Generate Numbers Map
-function proximityArray(bombLayer){
 
 
-}
 
 //Game grid sensor. Checks targeted block for underlying type
 
@@ -114,7 +142,7 @@ function proximityArray(bombLayer){
 
 //Game difficulty selection
 let difficulty = {
-    test: [6,4,4],
+    test: [3,4,4],
     easy: [25,9,9],
     medium: [80,16, 16],
     hard: [150, 16, 30],
@@ -126,15 +154,6 @@ let difficulty = {
 
 //Local Storage and Leaderboard
 
-
-// let bombLayer = [];
-
-// for(let i=0; i < 16; i++){
-//     bombLayer.push(0)
-// }
-// bombLayer[15]=1;
-
-
 //*Tutorial
 //*Help Button
 
@@ -142,9 +161,15 @@ let difficulty = {
 window.onload = async () => {
     
 
-    gameGrid.initializeGameGrids(difficulty.test)
-    
+    gameGrid.initializeGameGrids(difficulty.hard)
     for(let i = 0; i < 4; i++){
         console.log(gameGrid.bombLayer[i])
+    }
+    
+    console.log("")
+    
+    gameGrid.proximityArray()
+    for(let i = 0; i < 4; i++){
+        console.log(gameGrid.proximityLayer[i])
     }
 }
