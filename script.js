@@ -65,46 +65,29 @@ const gameGrid = {
 
     //Generate Numbers Layer
     proximityArray(){
+        let adjacencies, bombsInArea,index;
+    
         for(let j = 0; j < this.rows; j++){
             for(i = 0; i < this.columns; i++){
-                let bombsInArea = 0;
-                if((i>0 && i<this.columns-1) && (j>0 && j<this.rows-1)){ //Main Body Element
-                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i-1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
+                if(i==0 && j==0){
+                    adjacencies = findAdjacentIndeces([0,0], this.columns, this.rows);
+                    bombsInArea = sumArrayIndeces([0,0],adjacencies,this.bombLayer)
+
+                    this.proximityLayer[0][0] = bombsInArea
+                }
+                else{
+                    index = [i, j];
+                
+                    adjacencies = findAdjacentIndeces(index, this.columns, this.rows);
+                    bombsInArea = sumArrayIndeces(index ,adjacencies,this.bombLayer);
+
+                    // console.log(adjacencies)
+                
                     this.proximityLayer[j].push(bombsInArea)
-                    // console.log('main body')
-                } else if ((i>0 && i<this.columns-1) && j==0){ //Top row
-                    bombsInArea = this.bombLayer[j][i-1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('top row')
-                } else if (i==this.columns-1 && (j>0 && j<this.rows-1)){ //Rightside Column
-                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j][i-1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('right col')
-                } else if ((i>0 && i<this.columns-1) && j==this.rows-1){ //Bottom row
-                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i-1]+this.bombLayer[j][i+1];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('bottom row')
-                } else if (i==0 & (j>0 && j<this.rows-1)){ //Left Column
-                    bombsInArea = this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i+1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('left col')
-                } else if (i==this.columns-1 && j==0){ //Top-right corner
-                    bombsInArea = this.bombLayer[j][i-1]+this.bombLayer[j+1][i-1]+this.bombLayer[j+1][i];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('top-right corner')
-                } else if (i==this.columns-1 & j == this.rows-1){ //Bottom-right corner
-                    bombsInArea = this.bombLayer[j-1][i-1]+this.bombLayer[j-1][i]+this.bombLayer[j][i-1];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('bottom-right corner')
-                } else if(i==0 && j==0){ //Top-left corner
-                    bombsInArea = this.bombLayer[j][i+1]+this.bombLayer[j+1][i]+this.bombLayer[j+1][i+1];
-                    this.proximityLayer[j][i] = bombsInArea;
-                    // console.log('top-left corner')
-                } else if (i==0 && j == this.rows-1) {//Bottom-left corner
-                    bombsInArea = this.bombLayer[j-1][i]+this.bombLayer[j-1][i+1]+this.bombLayer[j][i+1];
-                    this.proximityLayer[j].push(bombsInArea)
-                    // console.log('bottom-left corner')
-                } 
+                }
+
+                
+                   
                 // console.log(`(${i},${j})`)
             }
             if(j < this.rows - 1){
@@ -127,8 +110,67 @@ function bombPlacement(numberOfBombs){
     return [isBomb, numberOfBombs]
 }
 
+//Finds adjacent nodes of a given index in grid arrays
+function findAdjacentIndeces(index, columns, rows){
+    let adjacenyObject = [
+        [-1,-1],
+        [0,-1],
+        [1,-1],
+        [-1,0],
+        [1,0],
+        [-1,1],
+        [0,1],
+        [1,1],
+    ];
 
+    let hasIndex = [0, 0, 0, 0, 0, 0, 0, 0];
+       
+    //Top
+    if(index[0]==0 && index[1]==0){ //Top-left corner
+        hasIndex = [0, 0, 0, 0, 1, 0, 1, 1]
 
+    } else if ((index[0]>0 && index[0]<columns-1) && index[1]==0){ //Top row
+        hasIndex = [0, 0, 0, 1, 1, 1, 1, 1]
+
+    } else if (index[0]==columns-1 && index[1]==0){ //Top-right corner
+        hasIndex = [0, 0, 0, 1, 0, 1, 1, 0]
+
+    } else if((index[0]>0 && index[0]<columns-1) && (index[1]>0 && index[1]<rows-1)){ //Main Body Element
+        hasIndex = [1, 1, 1, 1, 1, 1, 1, 1]
+    
+    } else if (index[0]==columns-1 && (index[1]>0 && index[1]<rows-1)){ //Rightside Column
+        hasIndex = [1, 1, 0, 1, 0, 1, 1, 0]
+
+    } else if ((index[0]>0 && index[0]<columns-1) && index[1]==rows-1){ //Bottom row
+        hasIndex = [1, 1, 1, 1, 1, 0, 0, 0]
+
+    } else if (index[0]==0 & (index[1]>0 && index[1]<rows-1)){ //Left Column
+        hasIndex = [0, 1, 1, 0, 1, 0, 1, 1]
+   
+    } else if (index[0]==columns-1 & index[1] == rows-1){ //Bottom-right corner
+        hasIndex = [1, 1, 0, 1, 0, 0, 0, 0]
+
+    } else if(index[0]==0 && index[1]==0){ //Top-left corner
+        hasIndex = [0, 0, 0, 0, 1, 0, 1, 1]
+
+    } else if (index[0]==0 && index[1] == rows-1) {//Bottom-left corner
+        hasIndex = [0, 1, 1, 0, 1, 0, 0 ,0]
+    } 
+
+    return [adjacenyObject, hasIndex]
+}
+
+function sumArrayIndeces(index, adjacencyObject, gridArray){
+    let sum = 0;
+
+    for(let i=0; i< adjacencyObject[1].length; i++){
+        if(adjacencyObject[1][i] != 0){
+            sum += gridArray[index[1]+adjacencyObject[0][i][1]][index[0]+adjacencyObject[0][i][0]]
+        }
+    }
+
+    return sum
+}
 
 //Game grid sensor. Checks targeted block for underlying type
 
@@ -141,13 +183,42 @@ function bombPlacement(numberOfBombs){
 //Score Tracker
 
 //Game difficulty selection
-let difficulty = {
-    test: [3,4,4],
-    easy: [25,9,9],
-    medium: [80,16, 16],
-    hard: [150, 16, 30],
-}
 
+
+// function difficultySelector(){
+//     let userSelection;
+
+    let difficulty = {
+        test: [3,4,4],
+        easy: [25,9,9],
+        normal: [80, 16, 16],
+        hard: [150, 16, 30],
+    }
+
+
+//     const difficultyDIV = document.getElementById('difficultyBtns')
+//     let controlBtns = difficultyDIV.getElementsByTagName('button')
+//     for(let i=0; i<controlBtns.length; i++){
+//         controlBtns[i].addEventListener('click', () => {
+//             switch (controlBtns[i].textContent){
+//             case 'Easy':
+//                 userSelection = difficulty.easy;
+//                 break;
+//             case 'Normal':
+//                 userSelection = difficulty.normal;
+//                 break;
+//             case 'Hard':
+//                 userSelection = difficulty.hard;
+//                 break;
+//             default: 
+//                 userSelection = difficult.test;
+//                 break;
+//             }
+//         })
+//     }
+
+//     return userSelection
+// }
 
 
 
@@ -161,15 +232,8 @@ let difficulty = {
 window.onload = async () => {
     
 
-    gameGrid.initializeGameGrids(difficulty.hard)
-    for(let i = 0; i < 4; i++){
-        console.log(gameGrid.bombLayer[i])
-    }
-    
-    console.log("")
-    
+    gameGrid.initializeGameGrids(difficulty.test)
     gameGrid.proximityArray()
-    for(let i = 0; i < 4; i++){
-        console.log(gameGrid.proximityLayer[i])
-    }
+    
+    
 }

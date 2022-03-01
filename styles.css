@@ -13,12 +13,12 @@ body{
 
 /* #welcomeScreen{
     display: auto;
-}
+}*/
 
 #tutorialScreen{
    display: none;
 }
-
+/*
 #gameScreen{
     display: none;
 }
