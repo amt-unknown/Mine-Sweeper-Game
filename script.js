@@ -30,6 +30,10 @@ const gameGrid = {
                 let newCol = document.createElement('div')
                 newCol.className = 'grid-column'
                 newCol.addEventListener('dblclick',() => {
+                    if(this.bombLayer[j][i] == 0){
+                        newCol.style.backgroundColor = 'rgba(200, 200, 200)'
+                        newCol.textContent = this.proximityLayer[j][i]
+                    }
                     console.log(this.bombLayer[j][i])
                 })
                 newRow.appendChild(newCol)
