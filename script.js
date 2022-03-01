@@ -10,6 +10,7 @@ const gameGrid = {
     columns: 0,
     bombCout: 0,
     bombLayer: [[]],
+    eventLayer: [[]],
     proximityLayer: [[]],
 
     initializeGameGrids([numberOfBombs, numberOfRows, numberOfColumns]) {
@@ -22,20 +23,33 @@ const gameGrid = {
         let placeBomb = false;
         for(let j=0; j < numberOfRows; j++){
             let newRow = document.createElement('div')
-            newRow.className = 'grid-row'
+            newRow.className = `grid-row`
 
             
             // gameGrid.push()
             for(let i=0; i < numberOfColumns; i++){
                 let newCol = document.createElement('div')
-                newCol.className = 'grid-column'
+                newCol.className = `grid-column row-${j}-column-${i}`
                 newCol.addEventListener('dblclick',() => {
                     if(this.bombLayer[j][i] == 0){
+                        if(this.proximityLayer[j][i] == 0 && newCol.textContent == ""){
+                            let adjacencies = findAdjacentIndeces([i,j], this.columns, this.rows)
+                            grayedGridExpansion([i,j],adjacencies, this.columns, this.rows, 0)
+                                
+                        }
                         newCol.style.backgroundColor = 'rgba(200, 200, 200)'
-                        newCol.textContent = this.proximityLayer[j][i]
+                        if(this.proximityLayer[j][i] == 0){
+                            newCol.textContent = " "
+                        } else {
+                            newCol.textContent = this.proximityLayer[j][i]
+                        }
+                    } else {
+                        window.alert("Game Over!")
                     }
-                    console.log(this.bombLayer[j][i])
-                })
+                    // console.log(this.bombLayer[j][i])
+
+            
+            })
                 newRow.appendChild(newCol)
                 
                 let result = bombPlacement(bombsRemaining)
@@ -45,12 +59,14 @@ const gameGrid = {
 
                 //Initializes bombLayer 
                 if(j === 0 && i === 0){ //Only used for initial value in null array. 
+                    this.eventLayer[j][i] = newCol;
                     if(placeBomb){ 
                         this.bombLayer[j][i] = 1;
                     } else{
                         this.bombLayer[j][i] = 0;
                     }
                 } else { //Normal iterations after initial value placement
+                    this.eventLayer[j].push(newCol)
                     if(placeBomb){
                         this.bombLayer[j].push(1);
                     } else{
@@ -62,9 +78,12 @@ const gameGrid = {
 
             if(j < numberOfRows - 1){
                 this.bombLayer.push([])
+                this.eventLayer.push([])
             }
             gameGrid.appendChild(newRow)
         }
+        this.eventLayer = gameGrid;
+        console.log(this.eventLayer)
     },
 
     //Generate Numbers Layer
@@ -164,6 +183,34 @@ function findAdjacentIndeces(index, columns, rows){
     return [adjacenyObject, hasIndex]
 }
 
+//Changes Color of square is target square has 0 mines nearby
+function grayedGridExpansion(index, adjacencies, columns, rows, recursionLimiter){
+    let count = recursionLimiter
+    for(let i=0; i<adjacencies[1].length; i++){
+        if(adjacencies[1][i] != 0 ){
+            let currentIndex = [index[0]+adjacencies[0][i][0],index[1]+adjacencies[0][i][1]]
+            let DOMelement = document.querySelector(`.row-${currentIndex[1]}-column-${currentIndex[0]}`)
+            DOMelement.style.backgroundColor = 'rgba(200, 200, 200)'
+            if(gameGrid.proximityLayer[currentIndex[1]][currentIndex[0]] == 0){
+                DOMelement.textContent = " "
+                if(count < 10){
+                    count ++;
+                    let newAdjacencies = findAdjacentIndeces([currentIndex[0],currentIndex[1]], columns, rows)
+                    grayedGridExpansion([currentIndex[0],currentIndex[1]], newAdjacencies, columns, rows, count)
+                }
+            } else {
+                DOMelement.textContent = gameGrid.proximityLayer[index[1]+adjacencies[0][i][1]][index[0]+adjacencies[0][i][0]]
+            }
+            // DOMelement.removeEventListener('dblclick', handleEvent)
+            // console.log(DOMelement)
+            // let element = this.eventLayer[j+adjacencies[0][i][1]][i+adjacencies[0][i][0]].style.backgroundColor
+            // console.log(element.style)
+            // .style.backgroundColor = 'rgba(200, 200, 200)'
+            // this.eventLayer[j+adjacencies[0][i][1]][i+adjacencies[0][i][0]].textContent = this.proximityLayer[j+adjacencies[0][i][1]][i+adjacencies[0][i][0]]
+        }
+    }
+}
+
 function sumArrayIndeces(index, adjacencyObject, gridArray){
     let sum = 0;
 
@@ -236,8 +283,13 @@ function sumArrayIndeces(index, adjacencyObject, gridArray){
 window.onload = async () => {
     
 
-    gameGrid.initializeGameGrids(difficulty.test)
+    gameGrid.initializeGameGrids(difficulty.easy)
     gameGrid.proximityArray()
+
+
+    for(let i=0; i < 4; i++){
+        console.log(gameGrid.eventLayer[i])
+    }
     
     
 }
