@@ -130,20 +130,17 @@ const gameGrid = {
     },
 
     resetGrid() {
+        this.rows = 0
+        this.columns = 0
+        this.bombCout = 0
         this.bombLayer = [[]]
+        this.eventLayer = [[]]
+        this.gameEnd = false
         this.proximityLayer = [[]]
 
         let gridSpace = document.getElementById("gridSpace")
         gridSpace.innerHTML = ""
 
-        // gridRows.remove()
-        // for(let i=0; i< gridRows.length; i++){
-        //     console.log(gridRows[i])
-        //     gridRows[i].remove()
-        // }
-
-
-        this.eventLayer = [[]]
     },
 }
 
