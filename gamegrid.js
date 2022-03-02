@@ -14,7 +14,7 @@ const gameGrid = {
         this.columns = numberOfColumns;
         this.bombCout = numberOfBombs;
 
-        let gameGrid = document.querySelector('#gridSpace')
+        let gameSpace = document.querySelector('#gridSpace')
         let bombsRemaining = numberOfBombs;
         let placeBomb = false;
         for(let j=0; j < numberOfRows; j++){
@@ -22,7 +22,7 @@ const gameGrid = {
             newRow.className = `grid-row`
 
             
-            // gameGrid.push()
+            // gameSpace.push()
             for(let i=0; i < numberOfColumns; i++){
                 let newCol = document.createElement('div')
                 newCol.className = `grid-column row-${j}-column-${i}`
@@ -90,9 +90,9 @@ const gameGrid = {
                 this.bombLayer.push([])
                 this.eventLayer.push([])
             }
-            gameGrid.appendChild(newRow)
+            gameSpace.appendChild(newRow)
         }
-        this.eventLayer = gameGrid;
+        this.eventLayer = gameSpace;
         this.proximityArray()
     },
 
