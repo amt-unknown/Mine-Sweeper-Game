@@ -11,21 +11,21 @@ body{
     height: 500px;
 }
 
-/* #welcomeScreen{
-    display: auto;
-}*/
+#welcomeScreen{
+    display: block;
+}
 
 #tutorialScreen{
    display: none;
 }
-/*
+
 #gameScreen{
     display: none;
 }
 
 #difficultyScreen{
     display: none;
-} */
+}
 
 .gameSpace{
     width: 60%;
@@ -49,4 +49,22 @@ body{
     background-color: rgba(200, 200, 200);
 }
 
+.userScores{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.score{
+    display: flex;
+    justify-content: space-between;
+}
+
+.scoreNum{
+    width: 80px;
+    text-align: right;
+}
+
+.scoreLabel{
+    width: 80px;
+}
 
