@@ -3,16 +3,18 @@
 const gameGrid = {
     rows: 0,
     columns: 0,
-    bombCout: 0,
+    bombCount: 0,
     bombLayer: [[]],
     eventLayer: [[]],
     gameEnd: false,
+    currentScore: 0,
+    highScore: 0,
     proximityLayer: [[]],
 
     initializeGameGrids([numberOfBombs, numberOfRows, numberOfColumns]) {
         this.rows = numberOfRows;
         this.columns = numberOfColumns;
-        this.bombCout = numberOfBombs;
+        this.bombCount = numberOfBombs;
 
         let gameSpace = document.querySelector('#gridSpace')
         let bombsRemaining = numberOfBombs;
@@ -38,7 +40,6 @@ const gameGrid = {
                     if(!this.gameEnd){
                         if(this.bombLayer[j][i] == 0){
                             
-                            console.log("test")
                             if(this.proximityLayer[j][i] == 0 && isNaN(newCol.textContent)){
                                 let adjacencies = findAdjacentIndeces([i,j], this.columns, this.rows)
                                 grayedGridExpansion([i,j],adjacencies, this.columns, this.rows, 0)
@@ -49,6 +50,7 @@ const gameGrid = {
                                 newCol.textContent = " "
                             } else {
                                 newCol.textContent = this.proximityLayer[j][i]
+                                this.trackScore(this.proximityLayer[j][i])
                             }
                         } else {
                             this.gameEnd = true
@@ -59,31 +61,31 @@ const gameGrid = {
                     }
 
             
-            })
-                newRow.appendChild(newCol)
-                
-                let result = bombPlacement(bombsRemaining)
-                placeBomb = result[0]
-                bombsRemaining = result[1]
-                // [ placeBomb, bombsRemaining ] = bombPlacement(bombsRemaining)
-
-                //Initializes bombLayer 
-                if(j === 0 && i === 0){ //Only used for initial value in null array. 
-                    this.eventLayer[j][i] = newCol;
-                    if(placeBomb){ 
-                        this.bombLayer[j][i] = 1;
-                    } else{
-                        this.bombLayer[j][i] = 0;
-                    }
-                } else { //Normal iterations after initial value placement
-                    this.eventLayer[j].push(newCol)
-                    if(placeBomb){
-                        this.bombLayer[j].push(1);
-                    } else{
-                        this.bombLayer[j].push(0);
-                    }
+                })
+                    newRow.appendChild(newCol)
                     
-                }
+                    let result = bombPlacement(bombsRemaining)
+                    placeBomb = result[0]
+                    bombsRemaining = result[1]
+                    // [ placeBomb, bombsRemaining ] = bombPlacement(bombsRemaining)
+
+                    //Initializes bombLayer 
+                    if(j === 0 && i === 0){ //Only used for initial value in null array. 
+                        this.eventLayer[j][i] = newCol;
+                        if(placeBomb){ 
+                            this.bombLayer[j][i] = 1;
+                        } else{
+                            this.bombLayer[j][i] = 0;
+                        }
+                    } else { //Normal iterations after initial value placement
+                        this.eventLayer[j].push(newCol)
+                        if(placeBomb){
+                            this.bombLayer[j].push(1);
+                        } else{
+                            this.bombLayer[j].push(0);
+                        }
+                        
+                    }
             }
 
             if(j < numberOfRows - 1){
@@ -92,8 +94,25 @@ const gameGrid = {
             }
             gameSpace.appendChild(newRow)
         }
+
+        this.bombCount -= bombsRemaining
         this.eventLayer = gameSpace;
         this.proximityArray()
+    },
+
+    trackScore(number){
+        console.log(number*100)
+        this.currentScore += number*100;
+        let highscore = document.getElementById("highScore")
+        let currentscore = document.getElementById("currentScore")
+
+        currentscore.textContent = this.currentScore;
+
+        if(this.highScore < this.currentScore){
+            this.highScore = this.currentScore;
+            highscore.textContent = this.highScore
+            console.log('Congratulations! You have the new high score!')
+        }
     },
 
     //Generate Numbers Layer
@@ -137,9 +156,14 @@ const gameGrid = {
         this.eventLayer = [[]]
         this.gameEnd = false
         this.proximityLayer = [[]]
+        this.currentScore = 0;
+
 
         let gridSpace = document.getElementById("gridSpace")
         gridSpace.innerHTML = ""
+
+        let currentscore = document.getElementById("currentScore")
+        currentscore.textContent = this.currentScore;
 
     },
 }
@@ -254,19 +278,6 @@ function cycleMarking(index){
     // console.log('here')
 }
 
-//Game grid sensor. Checks targeted block for underlying type
-
-
-
-
-
-
-
-//Score Tracker
-
-//Game difficulty selection
-
-
 // function difficultySelector(){
 //     let userSelection;
 
@@ -274,40 +285,5 @@ function cycleMarking(index){
         test: [3,4,4],
         easy: [25,9,9],
         normal: [80, 16, 16],
-        hard: [150, 16, 30],
+        hard: [150, 30, 16],
     }
-
-
-//     const difficultyDIV = document.getElementById('difficultyBtns')
-//     let controlBtns = difficultyDIV.getElementsByTagName('button')
-//     for(let i=0; i<controlBtns.length; i++){
-//         controlBtns[i].addEventListener('click', () => {
-//             switch (controlBtns[i].textContent){
-//             case 'Easy':
-//                 userSelection = difficulty.easy;
-//                 break;
-//             case 'Normal':
-//                 userSelection = difficulty.normal;
-//                 break;
-//             case 'Hard':
-//                 userSelection = difficulty.hard;
-//                 break;
-//             default: 
-//                 userSelection = difficult.test;
-//                 break;
-//             }
-//         })
-//     }
-
-//     return userSelection
-// }
-
-
-
-
-//Local Storage and Leaderboard
-
-//*Tutorial
-//*Help Button
-
-// initializeGameGrids(0, 1, 4)

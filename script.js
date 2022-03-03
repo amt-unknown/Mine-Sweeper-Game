@@ -54,20 +54,6 @@ const userInterface ={
 
 }
 
-
-
-// userInterface.welcomeScreenOptions
-
-
-
-
-
-
 window.onload = async () => {
     userInterface.welcomeScreenOptions()
-
-    // gameGrid.initializeGameGrids(difficulty.easy)
-    // gameGrid.proximityArray()
-    
-    
 }

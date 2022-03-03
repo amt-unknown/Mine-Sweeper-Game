@@ -7,6 +7,14 @@ body{
     
 }
 
+nav{
+    display: none;
+}
+
+sidebar{
+    display: none;
+}
+
 .screen{
     height: 500px;
 }
@@ -68,3 +76,8 @@ body{
     width: 80px;
 }
 
+@media (max-width: 600px){
+    .gameSpace{
+        width: 600px;
+    }
+}
