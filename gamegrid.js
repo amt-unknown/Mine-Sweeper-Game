@@ -27,19 +27,16 @@ const gameGrid = {
             for(let i=0; i < numberOfColumns; i++){
                 let newCol = document.createElement('div')
                 newCol.className = `grid-column row-${j}-column-${i}`
-                newCol.style.backgroundColor = "grey"
-                newCol.addEventListener('click', () => {
-                    if(!this.gameEnd){
-                        if(newCol.style.backgroundColor == 'grey'){
-                            cycleMarking([i,j])
-                        }
-                    }
-                })
+                newCol.style.border = "2px outset #5A6F7B"
+                newCol.style.backgroundColor = "#5A6F7B"
+                
                 newCol.addEventListener('dblclick',() => {
                     if(!this.gameEnd){
                         if(this.bombLayer[j][i] == 0){
                             gameGrid.emptyTilesRemaing -= 1
-                            newCol.style.backgroundColor = 'rgba(200, 200, 200)'
+                            newCol.style.backgroundColor = '#A5C0C9'
+                            newCol.style.borderStyle = "solid"
+                            console.log(newCol.textContent)
                             if(this.proximityLayer[j][i] == 0 && isNaN(newCol.textContent)){
                                 let adjacencies = findAdjacentIndeces([i,j], this.columns, this.rows)
                                 grayedGridExpansion([i,j],adjacencies, this.columns, this.rows, 0)
@@ -52,10 +49,18 @@ const gameGrid = {
                             }
                         } else {
                             this.gameEnd = true
-                            this.displayBombs()
+                            this.displayBombs(i,j)
 
                             let message = document.getElementById("gameMessage")
+                            gameSpace.style.opacity = ".40"
                             message.textContent = "Game Over!"
+                        }
+                    }
+                })
+                newCol.addEventListener('click', () => {
+                    if(!this.gameEnd){
+                        if(newCol.style.backgroundColor == 'rgb(90, 111, 123)'){
+                            cycleMarking([i,j])
                         }
                     }
                 })
@@ -113,7 +118,7 @@ const gameGrid = {
 
         if(this.emptyTilesRemaing === 0){
             let message = document.getElementById("gameMessage")
-            message.textContent = "Congratulations you won!"
+            message.textContent = "Congrats you won!"
         }
     },
 
@@ -144,16 +149,27 @@ const gameGrid = {
         }
     },
 
-    displayBombs(){
+    displayBombs(xIndex, yIndex){
         for(let j=0; j < this.rows; j++){
             for(let i=0; i < this.columns; i++){
                 let currentTile = document.querySelector(`.row-${j}-column-${i}`)
                 
                 if(this.bombLayer[j][i] == '1'){
-                    currentTile.textContent = 'B'
+                    if(currentTile.textContent == "X"){
+                        this.trackScore(10)
+                        currentTile.innerHTML = "<img class='flagIcon' src='./flagicon.png' alt='flag icon'>"
+                    } else {
+                        currentTile.innerHTML = "<img class='bombIcon' src='./bombicon.png' alt='bomb icon'>"
+                    }
                 }
             }
         }
+
+        if(xIndex && yIndex){
+            let clickedTile = document.querySelector(`.row-${yIndex}-column-${xIndex}`)
+            clickedTile.innerHTML = "<img class='bombIcon' src='./bombicon.png' alt='bomb icon'>"
+        }
+
     },
 
     resetGrid() {
@@ -172,6 +188,7 @@ const gameGrid = {
 
         let gridSpace = document.getElementById("gridSpace")
         gridSpace.innerHTML = ""
+        gridSpace.style.opacity = "1"
 
         let currentscore = document.getElementById("currentScore")
         currentscore.textContent = this.currentScore;
@@ -247,16 +264,17 @@ function grayedGridExpansion(index, adjacencies, columns, rows, recursionLimiter
     let count = recursionLimiter
    
     for(let i=0; i<adjacencies[1].length; i++){
-        if(adjacencies[1][i] != 0 ){
+        if(adjacencies[1][i]){
             let currentIndex = [index[0]+adjacencies[0][i][0],index[1]+adjacencies[0][i][1]]
             let DOMelement = document.querySelector(`.row-${currentIndex[1]}-column-${currentIndex[0]}`)
-            DOMelement.style.backgroundColor = 'rgba(200, 200, 200)'
-            if(gameGrid.proximityLayer[currentIndex[1]][currentIndex[0]] == 0){
+            DOMelement.style.backgroundColor = '#A5C0C9'
+            DOMelement.style.borderStyle = "solid"
+            if(gameGrid.proximityLayer[currentIndex[1]][currentIndex[0]] === 0){
                 if(DOMelement.textContent == ""){
                     gameGrid.emptyTilesRemaing -= 1
                 }
                 DOMelement.textContent = " "
-                if(count < 3){
+                if(count < 10){
                     count ++;
                     let newAdjacencies = findAdjacentIndeces([currentIndex[0],currentIndex[1]], columns, rows)
                     grayedGridExpansion([currentIndex[0],currentIndex[1]], newAdjacencies, columns, rows, count)
@@ -298,6 +316,6 @@ function cycleMarking(index){
 let difficulty = {
     test: [3,4,4],
     easy: [25,9,9],
-    normal: [80, 16, 16],
-    hard: [150, 30, 16],
+    normal: [93, 16, 16],
+    hard: [175, 30, 16],
 }

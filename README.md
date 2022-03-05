@@ -31,3 +31,15 @@ The sequence of overlay screens
 3. The Game Screen provides a section for "High Score", "Score", "Grid Space", "Hint", and "Leaderboard"
 
 'Leaderboard' -  Pushes a transparent 'popup' that displays 'Top 5' Players.
+
+
+---
+##Citations
+###bombicon.png:
+-Author: GrumpyDiamond
+-Website: https://opengameart.org/content/bomb-1
+-License: CC0 https://creativecommons.org/publicdomain/zero/1.0/
+###flagicon.png
+-Author: Nekith
+-Website: https://opengameart.org/content/flags-0
+-License: CC0 https://creativecommons.org/publicdomain/zero/1.0/

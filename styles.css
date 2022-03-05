@@ -4,12 +4,23 @@
 
 body{
     text-align: center;
-    background-color: darkgrey;
+    background-color: #E5e6E4;
     margin: 0;
+    font-family: sans-serif;
+}
+
+button{
+    /* background-color: green; */
+    background-color: #CCDBDC;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px outset black;
 }
 
 .screen{
-    height: 500px;
+    height: 600px;
+    border: 2px solid #5A6F7B;
 }
 
 /*Welcome Screen*/
@@ -28,12 +39,12 @@ body{
 
 #gameScreen{
     display: none;
+    height: 600px;
 }
 
 #gameDisplay{
     /* height: 490px; */
     /* width: 500px; */
-    border: 1px solid black;
     padding: 5px;
     display: flex;
     flex-flow: row wrap;
@@ -53,8 +64,12 @@ body{
 
 .gameSpace{
     width: 500px;
-    background-color: aqua;
+    background-color: #A5C0C9;
     margin: auto;
+}
+
+#gridSpace{
+    border: 2px outset #5A6F7B;
 }
 
 .grid-row{
@@ -62,26 +77,48 @@ body{
     justify-content: center;
 }
 
-.grid-column{
-    width: 25px;
-    height: 25px;
-    border: 1px solid black;
-    background-color: grey;
+.bombIcon{
+    width: 17px;
+    height: auto;
+    position: absolute;
+    bottom: 2px;
+    left: 6px;
 }
 
-.grid-column:hover{
-    background-color: rgba(200, 200, 200);
+.flagIcon{
+    width: 17px;
+    height: auto;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.grid-column{
+    width: 26px;
+    height: 26px;
+    position: relative;
+    border: 1px solid black;
+    background-color: #A5C0C9;
 }
 
 .userScores{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border: 1px solid black;
+    border: 2px solid #44535c;
+    padding-bottom: 5px;
+    /* border: 1px solid black; */
 }
 
 .score{
-    /* width: 300px; */
+    border: 2px outset black;
+    border-radius: 5px;
+    background-color: #CCDBDC;
+    color: #b6001e;
+    margin-top: 7px;
+    width: 150px;
+    padding: 4px;
     display: flex;
     justify-content: space-between;
 }
@@ -89,15 +126,32 @@ body{
 .scoreNum{
     width: 80px;
     text-align: right;
+    margin-right: 5px;
 }
 
 .scoreLabel{
-    width: 80px;
+    width: 115px;
+    padding-left: 2px;
+    text-align: left;
+}
+
+#gameMessageHome{
+    position: relative;
 }
 
 #gameMessage{
-    width: 100%;
-    color: red;
+    width: 300px;
+    color: #b6001e;
+    /* border: 1px solid red; */
+    position: absolute;
+    bottom: -248px;
+    right: 70px;
+    z-index: 1;
+    font-size: 50px;
+}
+
+#resetBtn{
+    margin-top: 10px;
 }
 
 @media (max-width: 600px){

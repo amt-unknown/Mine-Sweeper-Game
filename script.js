@@ -1,17 +1,27 @@
 //UI/UX and DOM control
 const userInterface ={   
 
+
     welcomeScreenOptions() {
         let newGame = document.getElementById('newGameBtn')
+        let tutorial = document.getElementById('tutorialBtn')
+        let welcomeScreen = document.getElementById("welcomeScreen")
+        let optionsScreen = document.getElementById("difficultyScreen")
+        let tutorialScreen = document.getElementById("tutorialScreen")
+
+
         newGame.addEventListener("click", () => {
-            let welcomeScreen = document.getElementById("welcomeScreen")
-            let optionsScreen = document.getElementById("difficultyScreen")
-
-
+            
             welcomeScreen.style.display = "none"
             optionsScreen.style.display = "block"
             this.difficultyScreenOptions(optionsScreen)
         })
+
+        tutorial.addEventListener("click", () => {{
+            welcomeScreen.style.display = "none"
+            tutorialScreen.style.display = "block"
+        }})
+        
     },
 
     difficultyScreenOptions(optionsScreen) {
@@ -36,7 +46,7 @@ const userInterface ={
             gameGrid.initializeGameGrids(difficulty.hard)
             optionsScreen.style.display = "none"
             gameScreen.style.display = "flex"
-            gameScreen.style.height = "900px"
+            gameScreen.style.height = "950px"
         })
 
         this.gameScreen(optionsScreen, gameScreen,gameDisplay)
@@ -47,7 +57,7 @@ const userInterface ={
         resetButton.addEventListener('click', () => {
             optionsDOM.style.display = "block"
             gameScreen.style.display = "none"
-            gameScreen.style.height = "490px";
+            gameScreen.style.height = "600px";
 
             gameGrid.resetGrid()
         })
