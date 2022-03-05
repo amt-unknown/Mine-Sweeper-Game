@@ -1,26 +1,25 @@
-*{
+/* *{
     border: 1px solid black;
-}
+} */
 
 body{
     text-align: center;
-    
-}
-
-nav{
-    display: none;
-}
-
-sidebar{
-    display: none;
+    background-color: darkgrey;
+    margin: 0;
 }
 
 .screen{
     height: 500px;
 }
 
+/*Welcome Screen*/
 #welcomeScreen{
     display: block;
+}
+
+#welcomeDisplay{
+    /* display: flex; */
+    padding-top: 150px
 }
 
 #tutorialScreen{
@@ -31,12 +30,29 @@ sidebar{
     display: none;
 }
 
+#gameDisplay{
+    /* height: 490px; */
+    /* width: 500px; */
+    border: 1px solid black;
+    padding: 5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: start;
+    /* align-items: space-between; */
+}
+
 #difficultyScreen{
     display: none;
 }
 
+
+#difficultyDisplay{
+    padding-top: 150px;
+}
+
 .gameSpace{
-    width: 60%;
+    width: 500px;
     background-color: aqua;
     margin: auto;
 }
@@ -59,10 +75,13 @@ sidebar{
 
 .userScores{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    border: 1px solid black;
 }
 
 .score{
+    /* width: 300px; */
     display: flex;
     justify-content: space-between;
 }
@@ -76,8 +95,13 @@ sidebar{
     width: 80px;
 }
 
+#gameMessage{
+    width: 100%;
+    color: red;
+}
+
 @media (max-width: 600px){
     .gameSpace{
-        width: 600px;
+        width: 500px;
     }
 }

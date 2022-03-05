@@ -9,13 +9,14 @@
     <link href="./styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <nav>NavBar Here</nav>
     <div id="gameSpace" class="gameSpace">
         <div id = "welcomeScreen" class="screen">
-            <h1>Welcome!</h1>
-            <div class="welcomeBtns">
-                <button id="newGameBtn"class="newGame">New Game</button>
-                <button id="tutorialBtn" class="tutorial">Tutorial</button> 
+            <div id="welcomeDisplay">
+                <h1>Welcome to a Mine Sweeper Clone!</h1>
+                <div class="welcomeBtns">
+                    <button id="newGameBtn"class="newGame">New Game</button>
+                    <button id="tutorialBtn" class="tutorial">Tutorial</button> 
+                </div>
             </div>
         </div>
         <div id="tutorialScreen" class="screen">
@@ -37,42 +38,38 @@
             </div>
         </div>
         <div id="gameScreen" class="screen">
-            <div class="userScores">
-                <div class="score">
-                    <div class="scoreLabel">High Score:</div> 
-                    <div id="highScore" class="scoreNum">    0</div>
+            <div id="gameDisplay">
+                <div class="userScores">
+                    <div class="score">
+                        <div class="scoreLabel">High Score:</div> 
+                        <div id="highScore" class="scoreNum">    0</div>
+                    </div>
+                    <button id="resetBtn" type="button">Reset</button>
+                    <div class="score">
+                        <div class="scoreLabel">Score:</div> 
+                        <div id="currentScore" class="scoreNum">    0</div>
+                    </div>
+                    <div id="gameMessage"></div>
                 </div>
-                <button id="resetBtn" type="button">Reset</button>
-                <div class="score">
-                    <div class="scoreLabel">Score:</div> 
-                    <div id="currentScore" class="scoreNum">    0</div>
+                <div id="gridSpace">
                 </div>
-                
-            </div>
-            <div id="gridSpace">
-            </div>
-            <div class="gameOptions">
-                <div class="Hint">Hint</div>
-                <div class="Leaderboard">Leaderboard</div>
+                <!-- <div class="gameOptions">
+                    <div class="Controls">Controls</div>
+                    <div class="Leaderboard">Leaderboard</div>
+                </div> -->
             </div>
         </div>
         <div id="difficultyScreen" class="screen">
-            <h2>Difficulty</h2>
-            <div id="difficultyBtns">
-                <button id="easy" type="button">Easy</button>
-                <button id="normal" type="button">Normal</button>
-                <button id="hard" type="button">Hard</button>
+            <div id="difficultyDisplay">
+                <h2>Please, choose your difficulty</h2>
+                <div id="difficultyBtns">
+                    <button id="easy" type="button">Easy</button>
+                    <button id="normal" type="button">Normal</button>
+                    <button id="hard" type="button">Hard</button>
+            </div>
             </div>
         </div>
     </div>
-    <sidebar>
-        <h3>Leaderboard</h3>
-        <ul>
-            <li>User 1: Score</li>
-            <li>User 2: Score</li>
-            <li>User 3: Score</li>
-        </ul>
-    </sidebar>
     <script src="./gamegrid.js"></script>
     <script src="./script.js" defer></script>
 </body>
