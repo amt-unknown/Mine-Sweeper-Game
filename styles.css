@@ -1,11 +1,10 @@
 /* *{
-    border: 1px solid black;
+    border: .125em solid black;
 } */
 
 body{
     text-align: center;
     background-color: #E5e6E4;
-    margin: 0;
     font-family: sans-serif;
 }
 
@@ -13,14 +12,17 @@ button{
     /* background-color: green; */
     background-color: #CCDBDC;
     border: none;
-    margin: 5px;
-    border-radius: 5px;
-    border: 2px outset black;
+    /* margin: 5px; */
+    margin: .3125rem;
+    border-radius: .125rem;
+    border: .125rem outset black;
 }
 
 .screen{
-    height: 600px;
+    /* height: 600px; */
     border: 2px solid #5A6F7B;
+    padding: .625em;
+    box-shadow: 1em 1em 1em #5a6f7b;
 }
 
 /*Welcome Screen*/
@@ -29,8 +31,13 @@ button{
 }
 
 #welcomeDisplay{
-    /* display: flex; */
-    padding-top: 150px
+    display: flex;
+    /* padding-top: 150px */
+    font-size: larger;
+    flex-flow:row wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 25em;
 }
 
 #tutorialScreen{
@@ -39,13 +46,18 @@ button{
 
 #gameScreen{
     display: none;
-    height: 600px;
+    justify-content: center;
+    padding: 3em;
+    /* height: 600px; */
 }
 
 #gameDisplay{
     /* height: 490px; */
     /* width: 500px; */
-    padding: 5px;
+    min-height: 25em;
+    max-width: 30em;
+    /* padding: .3125em; */
+    /* padding-top: 1em; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -55,6 +67,7 @@ button{
 
 #difficultyScreen{
     display: none;
+    min-height: 25em;
 }
 
 
@@ -63,13 +76,16 @@ button{
 }
 
 .gameSpace{
-    width: 500px;
+    /* width: 600px; */
+    max-width: 37.5em;
     background-color: #A5C0C9;
     margin: auto;
 }
 
 #gridSpace{
-    border: 2px outset #5A6F7B;
+    /* border: 2px outset #5A6F7B; */
+    padding-top: 1.5em;
+    width: 100%
 }
 
 .grid-row{
@@ -78,11 +94,11 @@ button{
 }
 
 .bombIcon{
-    width: 17px;
+    width: 1.0625em;
     height: auto;
     position: absolute;
-    bottom: 2px;
-    left: 6px;
+    bottom: .125em;
+    left: .375em;
 }
 
 .flagIcon{
@@ -94,44 +110,46 @@ button{
 }
 
 .grid-column{
-    width: 26px;
-    height: 26px;
+    width: 1.625em;
+    height: 1.325em;
+    padding-top: .3em;
     position: relative;
-    border: 1px solid black;
+    border: .0625em solid black;
     background-color: #A5C0C9;
 }
 
 .userScores{
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border: 2px solid #44535c;
-    padding-bottom: 5px;
+    border: .125em inset #44535c;
+    /* padding-bottom: .25em; */
     /* border: 1px solid black; */
 }
 
 .score{
-    border: 2px outset black;
-    border-radius: 5px;
-    background-color: #CCDBDC;
+    border: .125em outset black;
+    border-radius: .3125em;
+    background-color: black;
     color: #b6001e;
-    margin-top: 7px;
-    width: 150px;
-    padding: 4px;
+    font-weight: 600;
+    margin: 1em;
+    width: 9.375em;
+    padding: .25em;
     display: flex;
     justify-content: space-between;
 }
 
 .scoreNum{
-    width: 80px;
+    width: 4.375em;
     text-align: right;
-    margin-right: 5px;
+    margin-right: .3125em;
 }
 
 .scoreLabel{
-    width: 115px;
-    padding-left: 2px;
+    width: 7.8125em;
+    padding-left: .125em;
     text-align: left;
 }
 
@@ -140,22 +158,72 @@ button{
 }
 
 #gameMessage{
-    width: 300px;
+    text-align: center;
+    width: 100%;
     color: #b6001e;
-    /* border: 1px solid red; */
+    text-shadow: .05em .05em .1em black;
     position: absolute;
-    bottom: -248px;
-    right: 70px;
+    top:1.905em;
+    right:4.27em;
     z-index: 1;
-    font-size: 50px;
-}
+    font-size: 5em;
+} 
 
 #resetBtn{
-    margin-top: 10px;
+    margin-top: .4325em;
+    height: 3em;
+    margin: 1.44em;
 }
 
 @media (max-width: 600px){
-    .gameSpace{
-        width: 500px;
+    #gameScreen{
+        padding:calc(3em*.3);
+        
+    }
+
+    #gameDisplay{
+        min-height: 20em;
+    }
+    
+    #gridSpace{
+        padding-top:calc(1.5em*.5)
+    }
+
+    .grid-column{
+        width: 4vw;
+        height: calc(4vw*.97);
+        padding-top:calc(4vw*.03);
+        font-size: calc(4vw*.75);
+    }
+
+    .bombIcon{
+        width: 65.385%;
+        height: auto;
+        position: absolute;
+        bottom: 7.69%;
+        left: 23.07%;
+    }
+    .score{
+        font-size: 50%;
+        margin: calc(1em*.5);
+        width: calc(9.375em*.5);
+        padding: calc(.25em*.5);
+        display: flex;
+        flex-flow:row wrap;
+        justify-content: space-between;
+    }
+    .scoreLabel{
+        text-align: center;
+    }
+    .scoreNum{
+        text-align: center;
+    }
+    #resetBtn{
+        margin:calc(1.44em*.5)
+    }
+    #gameMessage{
+        font-size:calc(3.125em*.7);
+        top: 4em;
+        right:3.83em;
     }
 }

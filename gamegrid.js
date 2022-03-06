@@ -38,12 +38,11 @@ const gameGrid = {
                             newCol.style.borderStyle = "solid"
                             console.log(newCol.textContent)
                             if(this.proximityLayer[j][i] == 0 && isNaN(newCol.textContent)){
+                            // if(this.proximityLayer[j][i] == 0 && isNaN(newCol.textContent)){
                                 let adjacencies = findAdjacentIndeces([i,j], this.columns, this.rows)
                                 grayedGridExpansion([i,j],adjacencies, this.columns, this.rows, 0)
-                            }
-                            if(this.proximityLayer[j][i] == 0){
                                 newCol.textContent = " "
-                            } else {
+                            } else{
                                 newCol.textContent = this.proximityLayer[j][i]
                                 this.trackScore(this.proximityLayer[j][i])
                             }
@@ -100,7 +99,7 @@ const gameGrid = {
         this.emptyTilesRemaing = this.rows*this.columns - this.bombCount;
         this.eventLayer = gameSpace;
         this.proximityArray()
-        // this.displayBombs()
+        this.displayBombs()
     },
 
     trackScore(number){
@@ -201,7 +200,7 @@ const gameGrid = {
 function bombPlacement(numberOfBombs){
     let randomNumber = Math.random();
     let isBomb = false;
-    if(randomNumber < 0.35 && numberOfBombs > 0){
+    if(randomNumber < 0.30 && numberOfBombs > 0){
         isBomb = true;
         numberOfBombs--;
     }
@@ -316,6 +315,6 @@ function cycleMarking(index){
 let difficulty = {
     test: [3,4,4],
     easy: [25,9,9],
-    normal: [93, 16, 16],
-    hard: [175, 30, 16],
+    normal: [70, 16, 16],
+    hard: [140, 30, 16],
 }

@@ -46,7 +46,7 @@ const userInterface ={
             gameGrid.initializeGameGrids(difficulty.hard)
             optionsScreen.style.display = "none"
             gameScreen.style.display = "flex"
-            gameScreen.style.height = "950px"
+            // gameScreen.style.height = "1000px"
         })
 
         this.gameScreen(optionsScreen, gameScreen,gameDisplay)
@@ -57,7 +57,7 @@ const userInterface ={
         resetButton.addEventListener('click', () => {
             optionsDOM.style.display = "block"
             gameScreen.style.display = "none"
-            gameScreen.style.height = "600px";
+            // gameScreen.style.height = "600px";
 
             gameGrid.resetGrid()
         })
