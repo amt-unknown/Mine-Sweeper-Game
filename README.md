@@ -45,6 +45,8 @@ There are two controls used a 'single click' and 'double click.'
 1. If the user clicks to quickly when attempting to tag a tile more than once, the web browser will register a 'double click.' This will result in revealing the contents behind the tile which could be an issue resulting in a premature loss. Unsure if this is a local issue, as in the time width of a user's doulbe click needs to be adjusted in the pointer section of the machine or where there is a work around solution. 
 2. When revealing a tile that has no adjacent mines, a search will occur revealing all tiles adjacent that also contains on adjacent mines. The propogation of this doesn't always reveal all so named tiles. This is also reminiscent of the original game. 
 3. User gets points for clicking on a bomb. 
+4. Resizing issue with grid is not aligning with the easy game mode.
+5. Resizing issue with grid on window size not machinging tiles
 
 ---
 ##Citations
