@@ -14,6 +14,17 @@ const gameGrid = {
     //Initializes grid via the user difficulty setting. 
     initializeGameGrids([numberOfBombs, numberOfRows, numberOfColumns]) {
         //Saves difficulty parameters within object
+
+        let userHighScore = localStorage.getItem('highScore')
+        console.log(userHighScore)
+        if(userHighScore != null){
+            let parsedUserHighScore = JSON.parse(userHighScore)
+            console.log(parsedUserHighScore)
+            this.highScore = parsedUserHighScore;
+            let highscore = document.getElementById("highScore")
+            highscore.textContent = this.highScore
+        }
+
         this.rows = numberOfRows;
         this.columns = numberOfColumns;
         this.bombCount = numberOfBombs;
@@ -66,6 +77,8 @@ const gameGrid = {
                             this.displayBombs(i,j)
 
                             //export high score here 
+                            let exportHighScore = JSON.stringify(this.highScore)
+                            localStorage.setItem('highScore', exportHighScore)
 
                             let message = document.getElementById("gameMessage")
                             gameSpace.style.opacity = ".40"
@@ -190,9 +203,9 @@ const gameGrid = {
                     if(currentTile.textContent == "X"){
                         //If user identified a bomb currectly a flag is revealed and score is updated
                         this.trackScore(10)
-                        currentTile.innerHTML = "<img class='flagIcon' src='./flagicon.png' alt='flag icon'>"
+                        currentTile.innerHTML = "<img class='flagIcon' src='./assets/images/flagicon.png' alt='flag icon'>"
                     } else {
-                        currentTile.innerHTML = "<img class='bombIcon' src='./bombicon.png' alt='bomb icon'>"
+                        currentTile.innerHTML = "<img class='bombIcon' src='./assets/images/bombicon.png' alt='bomb icon'>"
                     }
                 }
             }
@@ -200,7 +213,7 @@ const gameGrid = {
 
         if(xIndex && yIndex){///////
             let clickedTile = document.querySelector(`.row-${yIndex}-column-${xIndex}`)
-            clickedTile.innerHTML = "<img class='bombIcon' src='./bombicon.png' alt='bomb icon'>"
+            clickedTile.innerHTML = "<img class='bombIcon' src='./assets/images/bombicon.png' alt='bomb icon'>"
         }
 
     },
