@@ -1,7 +1,3 @@
-/* *{
-    border: .125em solid black;
-} */
-
 body{
     text-align: center;
     background-color: #E5e6E4;
@@ -9,30 +5,25 @@ body{
 }
 
 button{
-    /* background-color: green; */
     background-color: #CCDBDC;
     border: none;
-    /* margin: 5px; */
     margin: .3125rem;
     border-radius: .125rem;
     border: .125rem outset black;
 }
 
 .screen{
-    /* height: 600px; */
     border: 2px solid #5A6F7B;
     padding: .625em;
     box-shadow: 1em 1em 1em #5a6f7b;
 }
 
-/*Welcome Screen*/
 #welcomeScreen{
     display: block;
 }
 
 #welcomeDisplay{
     display: flex;
-    /* padding-top: 150px */
     font-size: larger;
     flex-flow:row wrap;
     justify-content: center;
@@ -48,21 +39,15 @@ button{
     display: none;
     justify-content: center;
     padding: 3em;
-    /* height: 600px; */
 }
 
 #gameDisplay{
-    /* height: 490px; */
-    /* width: 500px; */
     min-height: 25em;
     max-width: 30em;
-    /* padding: .3125em; */
-    /* padding-top: 1em; */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: start;
-    /* align-items: space-between; */
 }
 
 #difficultyScreen{
@@ -76,14 +61,12 @@ button{
 }
 
 .gameSpace{
-    /* width: 600px; */
     max-width: 37.5em;
     background-color: #A5C0C9;
     margin: auto;
 }
 
 #gridSpace{
-    /* border: 2px outset #5A6F7B; */
     margin-top: 1.5em;
     width: 100%;
     border: .1em inset #233038;
@@ -120,13 +103,10 @@ button{
 }
 
 .userScores{
-    /* width: 100%; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     border: .125em inset #44535c;
-    /* padding-bottom: .25em; */
-    /* border: 1px solid black; */
 }
 
 .score{
