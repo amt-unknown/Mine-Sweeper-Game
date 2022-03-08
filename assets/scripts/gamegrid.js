@@ -133,7 +133,7 @@ const gameGrid = {
         this.emptyTilesRemaing = this.rows*this.columns - this.bombCount;
         this.eventLayer = gameSpace;
         this.proximityArray()
-        this.displayBombs()
+        // this.displayBombs()
     },
 
     //updates user score
