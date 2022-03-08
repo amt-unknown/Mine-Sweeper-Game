@@ -26,12 +26,25 @@
 ## UI/UX
 The sequence of overlay screens 
 1. Welcome screen with "New Game" and "Tutorial" options that pushes to one of 2 screens
-2. - On the Tutorial Screen there is a series of pictures and descriptions explaining the game. The User can move through the different lessons and at any time start a new Game
-   - On the Difficulty Screen there are the options for 'Easy', 'Medium', and 'Hard'
-3. The Game Screen provides a section for "High Score", "Score", "Grid Space", "Hint", and "Leaderboard"
+2. (On the Tutorial Screen there is a series of pictures and descriptions explaining the game. The User can move through the different lessons and at any time start a new Game)**
+3. On the Difficulty Screen there are the options for 'Easy', 'Medium', and 'Hard'
+4. The Game Screen provides a section for "High Score", "Score", "Grid Space", and a "Reset" button. 
 
-'Leaderboard' -  Pushes a transparent 'popup' that displays 'Top 5' Players.
+**Feature to be implemented
 
+---
+## Game Overview and Controls
+After starting a new game and selecting the difficulty level, the user is presented with a grid of tiles. Behind the tiles, lie empty spaces and space where a mine is contained. The goal of the game is to locate all mines and reveal all spaces which do not contain mines.
+
+There are two controls used a 'single click' and 'double click.' 
+-'single click': allows the user to tag an unrevealed tile with an 'X' or a '?'. And 'X' would be used to confirm a the location of a mine while a '?' would signify that the user is unsure of what is behind a tile. 
+-'double click': allows the user to review what is behind a tile. Revealing a 'mine' will result in a 'Game Over'. If there is no mine behind a revealed tile, a number will be shown indicating the number of mines within said tile's vacinity. 
+
+---
+##Known Bugs
+1. If the user clicks to quickly when attempting to tag a tile more than once, the web browser will register a 'double click.' This will result in revealing the contents behind the tile which could be an issue resulting in a premature loss. Unsure if this is a local issue, as in the time width of a user's doulbe click needs to be adjusted in the pointer section of the machine or where there is a work around solution. 
+2. When revealing a tile that has no adjacent mines, a search will occur revealing all tiles adjacent that also contains on adjacent mines. The propogation of this doesn't always reveal all so named tiles. This is also reminiscent of the original game. 
+3. High score resets upon page refreshing. 
 
 ---
 ##Citations

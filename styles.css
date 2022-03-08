@@ -84,8 +84,9 @@ button{
 
 #gridSpace{
     /* border: 2px outset #5A6F7B; */
-    padding-top: 1.5em;
-    width: 100%
+    margin-top: 1.5em;
+    width: 100%;
+    border: .1em inset #233038;
 }
 
 .grid-row{
@@ -178,6 +179,7 @@ button{
 @media (max-width: 600px){
     #gameScreen{
         padding:calc(3em*.3);
+        padding-bottom: calc(11vw);
         
     }
 
@@ -186,7 +188,7 @@ button{
     }
     
     #gridSpace{
-        padding-top:calc(1.5em*.5)
+        margin-top:calc(1.5em*.5)
     }
 
     .grid-column{

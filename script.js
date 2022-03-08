@@ -1,7 +1,7 @@
 //UI/UX and DOM control
 const userInterface ={   
 
-
+    //Loads welcome screen
     welcomeScreenOptions() {
         let newGame = document.getElementById('newGameBtn')
         let tutorial = document.getElementById('tutorialBtn')
@@ -9,7 +9,7 @@ const userInterface ={
         let optionsScreen = document.getElementById("difficultyScreen")
         let tutorialScreen = document.getElementById("tutorialScreen")
 
-
+        //Event listener for launching game
         newGame.addEventListener("click", () => {
             
             welcomeScreen.style.display = "none"
@@ -17,6 +17,7 @@ const userInterface ={
             this.difficultyScreenOptions(optionsScreen)
         })
 
+        //Under construction: tutorial page
         tutorial.addEventListener("click", () => {{
             welcomeScreen.style.display = "none"
             tutorialScreen.style.display = "block"
@@ -24,6 +25,7 @@ const userInterface ={
         
     },
 
+    //Launches difficulty screen
     difficultyScreenOptions(optionsScreen) {
         let gameScreen = document.getElementById("gameScreen")
         let gameDisplay = document.getElementById("gameDisplay")
@@ -32,6 +34,7 @@ const userInterface ={
         let normalBtn = document.getElementById('normal')
         let hardBtn = document.getElementById('hard')
 
+        //Allows user to choose difficulty
         easyBtn.addEventListener("click", () => {
             gameGrid.initializeGameGrids(difficulty.easy)
             optionsScreen.style.display = "none"
@@ -52,6 +55,7 @@ const userInterface ={
         this.gameScreen(optionsScreen, gameScreen,gameDisplay)
     },
 
+    //Starts buttons for game screen
     gameScreen(optionsDOM, gameScreen, gameDisplay){
         let resetButton = document.getElementById("resetBtn")
         resetButton.addEventListener('click', () => {
