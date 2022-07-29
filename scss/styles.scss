@@ -1,0 +1,18 @@
+@import "config";
+@import "game-screen";
+@import "game-controls";
+@import "device-size";
+
+body{
+    text-align: center;
+    background-color: $background-color;
+    font-family: $font;
+}
+
+button{
+    background-color: #CCDBDC;
+    border: none;
+    margin: game-size-chooser("medium");
+    border-radius: game-size-chooser("small");
+    border: game-size-chooser("small") outset black;
+}

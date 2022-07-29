@@ -1,0 +1,61 @@
+@function game-grid-to-large(){
+    @warn 'User screen may be to small and may impact user experience';
+
+    @return 4vw;
+
+}
+
+@media (max-width: 600px){
+    
+    #gameScreen{
+        padding:calc(3em*.3);
+        padding-bottom: calc(11vw);
+        
+    }
+
+    #gameDisplay{
+        min-height: 20em;
+    }
+    
+    #gridSpace{
+        margin-top:calc(1.5em*.5)
+    }
+
+    .grid-column{
+        width: game-grid-to-large();
+        height: calc(4vw*.97);
+        padding-top:calc(4vw*.03);
+        font-size: calc(4vw*.75);
+    }
+
+    .bombIcon{
+        width: 65.385%;
+        height: auto;
+        position: absolute;
+        bottom: 7.69%;
+        left: 23.07%;
+    }
+    .score{
+        font-size: 50%;
+        margin: calc(1em*.5);
+        width: calc(9.375em*.5);
+        padding: calc(.25em*.5);
+        display: flex;
+        flex-flow:row wrap;
+        justify-content: space-between;
+    }
+    .scoreLabel{
+        text-align: center;
+    }
+    .scoreNum{
+        text-align: center;
+    }
+    #resetBtn{
+        margin:calc(1.44em*.5)
+    }
+    #gameMessage{
+        font-size:calc(3.125em*.7);
+        top: 4em;
+        right:3.83em;
+    }
+}

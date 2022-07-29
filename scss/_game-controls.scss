@@ -1,0 +1,113 @@
+$default-length-large: .125em;
+$default-length-small: .0625em;
+
+@mixin icon-location {
+    height: auto;
+    position: absolute;
+}
+
+
+
+.gameSpace{
+    max-width: 37.5em;
+    background-color: #A5C0C9;
+    margin: auto;
+}
+
+#gridSpace{
+    margin-top: 1.5em;
+    width: 100%;
+    border: .1em inset #233038;
+}
+
+.grid-row{
+    display: flex;
+    justify-content: center;
+}
+
+.bombIcon{
+    width: 1.0625em;
+    @include icon-location;
+    bottom: $default-length-large;
+    left: .375em;
+}
+
+.flagIcon{
+    width: 17px;
+    @include icon-location;
+    bottom: 5px;
+    left: 5px;
+}
+
+.grid-column{
+    width: 1.625em;
+    height: 1.325em;
+    padding-top: .3em;
+    position: relative;
+    border: $default-length-small solid black;
+    background-color: #A5C0C9;
+}
+
+.userScores{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: $default-length-large inset #44535c;
+
+    .score{
+        border: $default-length-large outset black;
+        border-radius: .3125em;
+        background-color: black;
+        color: #b6001e;
+        font-weight: 600;
+        margin: 1em;
+        width: 9.375em;
+        padding: .25em;
+        display: flex;
+        justify-content: space-between;
+    
+        .scoreNum{
+            width: 4.375em;
+            text-align: right;
+            margin-right: .3125em;
+        }
+    
+        .scoreLabel{
+            width: 7.8125em;
+            padding-left: $default-length-large;
+            text-align: left;
+        }
+    }
+
+    #gameMessage{
+        text-align: center;
+        width: 100%;
+        color: #b6001e;
+        text-shadow: .05em .05em .1em black;
+        position: absolute;
+        top:1.905em;
+        right:4.27em;
+        z-index: 1;
+        font-size: 5em;
+    
+        #gameMessageHome{
+            position: relative;
+        }
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+#resetBtn{
+    margin-top: .4325em;
+    height: 3em;
+    margin: 1.44em;
+}

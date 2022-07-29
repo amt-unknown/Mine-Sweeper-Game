@@ -1,10 +1,10 @@
-body{
+/* body{
     text-align: center;
     background-color: #E5e6E4;
     font-family: sans-serif;
-}
+} */
 
-button{
+/* button{
     background-color: #CCDBDC;
     border: none;
     margin: .3125rem;
@@ -16,9 +16,9 @@ button{
     border: 2px solid #5A6F7B;
     padding: .625em;
     box-shadow: 1em 1em 1em #5a6f7b;
-}
+} */
 
-#welcomeScreen{
+/* #welcomeScreen{
     display: block;
 }
 
@@ -58,9 +58,9 @@ button{
 
 #difficultyDisplay{
     padding-top: 150px;
-}
+} */
 
-.gameSpace{
+/* .gameSpace{
     max-width: 37.5em;
     background-color: #A5C0C9;
     margin: auto;
@@ -154,7 +154,7 @@ button{
     margin-top: .4325em;
     height: 3em;
     margin: 1.44em;
-}
+} */
 
 @media (max-width: 600px){
     #gameScreen{

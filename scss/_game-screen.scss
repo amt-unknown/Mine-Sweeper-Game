@@ -1,0 +1,76 @@
+@import "config";
+
+@function game-size-chooser($size) {
+    @if($size == "large" ){
+        @return $base-game-size;
+    }
+    @else {
+        @if($size == "medium") {
+            @return calc($base-game-size/2);
+        }
+        @else {
+            @return calc($base-game-size/5);
+        }
+    }
+}
+
+@mixin game-screen-flex($align-type: center, $justify-type: center) {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: $align-type;
+    justify-content: $justify-type;
+}
+
+
+
+$toggle-off: none;
+$toggle-on: block;
+$default-height: 25em;
+
+.screen{
+    border: 2px solid $primary-color;
+    padding: game-size-chooser("large");
+    box-shadow: 1em 1em 1em $primary-color;
+}
+
+
+
+
+#welcomeScreen{
+    display: $toggle-on;
+}
+
+
+#welcomeDisplay{
+    font-size: larger;
+    @include game-screen-flex;
+    min-height: $default-height;
+}
+
+#tutorialScreen{
+   display: $toggle-off;
+}
+
+#gameScreen{
+    display: $toggle-off;
+    justify-content: center;
+    padding: 3em;
+}
+
+#gameDisplay{
+    min-height: $default-height;
+    max-width: 30em;
+    @include game-screen-flex(start, space-around);
+    // justify-content: space-around;
+    // align-items: start;
+}
+
+#difficultyScreen{
+    display: $toggle-off;
+    min-height: $default-height;
+}
+
+
+#difficultyDisplay{
+    padding-top: 150px;
+}
